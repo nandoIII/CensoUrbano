@@ -8,7 +8,7 @@ $(function() {
     $("#btnSumit").click(function() {
 
         if ($('#usuariotxt').val() == "") {
-            alert('El campo usuario no debe estar vaci');
+            alert('El campo usuario no debe estar vacio');
             $('#usuariotxt').focus();
             return;
         }
@@ -28,36 +28,33 @@ $(function() {
         ),
                 function(result) {
                     alert(result);
-                    $.mobile.changePage("#page2", {transition: 'slide'});
-                    if (1 == 1) {
-                        if (result.success === 'true') {
+//                    $.mobile.changePage("#page2", {transition: 'slide'});
+                        if (result.login == 0) {
+                            $.mobile.hidePageLoadingMsg();
+                            alert(result.mensaje);
+                            alert("Usuario y/o Clave Incorrectos");                            
+
+                        } else {                                                        
                             $.mobile.hidePageLoadingMsg();
                             $('#usuariotxt').val($.trim($('#usuariotxt').val()));
                             isSessionActive = true;
                             $.mobile.changePage("#page2", {transition: 'slide'});
-                            $('ul').find('li').remove();
-                            $('ul').append('<li data-role="list-divider" role="heading">Menu</li>');
-                            for (var i = 0; i < result.data.length; i++) {
-                                $('ul').append('<li id=' + result.data[i].id_obra + ' data-theme="a"><a onclick="setIdObra(\'' + result.data[i].id_obra + '\')" href="#page3" data-transition="slide">' + result.data[i].nombre + '</a></li>');
-                            }
-
-                            $('ul').append('<li data-theme="a"><a href="#page4" data-transition="slide" onclick="obtenerMiPosicion();">Mi Posicion</a></li>');
-                            $('ul').listview('refresh');
-                        } else {
-                            $.mobile.hidePageLoadingMsg();
-                            alert("Usuario y/o Clave Incorrectos");
+//                            $('ul').find('li').remove();
+//                            $('ul').append('<li data-role="list-divider" role="heading">Menu</li>');
+//                            for (var i = 0; i < result.data.length; i++) {
+//                                $('ul').append('<li id=' + result.data[i].id_obra + ' data-theme="a"><a onclick="setIdObra(\'' + result.data[i].id_obra + '\')" href="#page3" data-transition="slide">' + result.data[i].nombre + '</a></li>');
+//                            }
+//
+//                            $('ul').append('<li data-theme="a"><a href="#page4" data-transition="slide" onclick="obtenerMiPosicion();">Mi Posicion</a></li>');
+//                            $('ul').listview('refresh');                            
                         }
-                    } else {
-                        $.mobile.hidePageLoadingMsg();
-                        alert(result);
-                    }
                 }, 'html');
     });
 });
 
 
 var isTypeOf = 1; //1 foto , 2 video
-var $base_url_login = 'http://www.dolmen.net.co/sid_v1/censo_au/index.php';
+var $base_url_login = 'http://www.dolmen.net.co/sid_v1/seguridad/ajax/login.php';
 var isSessionActive = false;
 window.id_obra = 0;
 function registrarAccion() {
@@ -90,7 +87,7 @@ function loadMap(position) {
     var latlng = new google.maps.LatLng(position.coords.latitude,
             position.coords.longitude);
     var myOptions = {
-        zoom: 8,
+        zoom: 12,
         center: latlng,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
