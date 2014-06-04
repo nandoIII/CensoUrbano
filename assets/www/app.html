@@ -24,26 +24,20 @@
     <body>
         <div data-role="page" data-theme="a" id="loginPage">
             <div data-theme="a" data-role="header">
-                <h3>
-                    Censo Mobiliarios
-                </h3>
+                <h3>Censo Mobiliarios</h3>
             </div>
             <div data-role="content">
                 <center><img src='images/logo.png' /></center>
                 <form id="fomrLogin" action="#page" method="post">
                     <div data-role="fieldcontain">
                         <fieldset data-role="controlgroup">
-                            <label for="usuariotxt">
-                                Usuario
-                            </label>
+                            <label for="usuariotxt">Usuario</label>
                             <input id="usuariotxt" placeholder="" value="" type="text" />
                         </fieldset>
                     </div>
                     <div data-role="fieldcontain">
                         <fieldset data-role="controlgroup">
-                            <label for="clavetxt">
-                                Clave
-                            </label>
+                            <label for="clavetxt">Clave</label>
                             <input id="clavetxt" placeholder="" value="" type="password" />
                         </fieldset>
                     </div>
@@ -57,80 +51,86 @@
         </div>
         <div data-role="page" id="page2">
             <div data-theme="a" data-role="header">
-                <h3>
-                    Censo Urbano
-                </h3>
+                <h3>Censo Urbano</h3>
             </div>
             <div data-role="content">
                 <center><img src='images/logo.png'/></center>
                 <ul data-role="listview" data-divider-theme="b" data-inset="true">
-                    <li data-role="list-divider" role="heading">
-                        Menu
+                    <li data-role="list-divider" role="heading">Menu</li>
+                    <li data-theme="a">
+                        <a href="#page3" data-transition="slide">Nuevo Reporte</a>
                     </li>
                     <li data-theme="a">
-                        <a href="#page3" data-transition="slide">
-                            Nuevo Reporte
-                        </a>
-                    </li>
-                    <li data-theme="a">
-                        <a href="#page4" data-transition="slide" onclick='obtenerMiPosicion();'>
-                            Mi Posicion
-                        </a>
+                        <a href="#page4" data-transition="slide" onclick='obtenerMiPosicion();'>Mi Posicion</a>
                     </li>
                 </ul>
             </div>
         </div>
         <div data-role="page" id="page3">
             <div data-theme="a" data-role="header">
-                <a data-role="button" data-inline="true" data-rel="back" data-transition="fade" data-theme="a" href="#page4" data-icon="back" data-iconpos="left">
-                    Atras
-                </a>
-                <h3>
-                    Nuevo Reporte
-                </h3>
+                <a data-role="button" data-inline="true" data-rel="back" data-transition="fade" data-theme="a" href="#page4" data-icon="back" data-iconpos="left">Atras</a>
+                <h3>Nuevo Reporte</h3>
             </div>
             <div data-role="content">
                 <center><img src='images/logo.png' /></center>
+
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup">
-                        <label for="descripciontxt">
-                            Descripcion
-                        </label>
+                    <label for="municipio" class="select">Municipio</label>
+                    <select name="municipio" id="municipio">
+                        <option value="1">Soledad</option>
+                        <option value="2">Cienaga</option>
+                        <option value="3">Uribia</option>
+                        <option value="4">Maicao</option>
+                        <option value="1">Soledad</option>
+                        <option value="2">Cienaga</option>
+                        <option value="3">Uribia</option>
+                        <option value="4">Maicao</option>
+                        <option value="1">Soledad</option>
+                        <option value="2">Cienaga</option>
+                        <option value="3">Uribia</option>
+                        <option value="4">Maicao</option>
+                        <option value="1">Soledad</option>
+                        <option value="2">Cienaga</option>
+                        <option value="3">Uribia</option>
+                        <option value="4">Maicao</option>
+                        <option value="1">Soledad</option>
+                        <option value="2">Cienaga</option>
+                        <option value="3">Uribia</option>
+                    </select>
+                    </fieldset>
+                </div>                
+
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="descripciontxt">Descripcion</label>
                         <textarea name="descripciontxt" id="descripciontxt" style='width:100%;'></textarea>
                     </fieldset>
                 </div>
-                <a data-role="button" data-transition="pop" data-theme="a" onclick='onPhotosLoad();' data-icon="plus" data-iconpos="left">
-                    Tomar Foto
-                </a>
-                <a data-role="button" data-transition="pop" data-theme="a" onclick='captureVideo();' data-icon="plus" data-iconpos="left">
-                    Grabar Video
-                </a>
-                <a data-role="button" data-transition="pop" data-theme="a" onclick='registrarAccion();' data-icon="plus" data-iconpos="left">
-                    Registrar
-                </a>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="sector">Sector</label>
+                        <input name="sector" id="sector" style='width:100%;'>
+                    </fieldset>
+                </div>                
+                <a data-role="button" data-transition="pop" data-theme="a" onclick='onPhotosLoad();' data-icon="plus" data-iconpos="left">Tomar Foto</a>
+                <a data-role="button" data-transition="pop" data-theme="a" onclick='captureVideo();' data-icon="plus" data-iconpos="left">Grabar Video</a>
+                <a data-role="button" data-transition="pop" data-theme="a" onclick='registrarAccion();' data-icon="plus" data-iconpos="left">Registrar</a>
             </div>
         </div>
         <div data-role="page" id="page4">
             <div data-theme="a" data-role="header">
-                <a data-role="button" data-inline="true" data-rel="back" data-transition="fade" href="#page2" data-icon="back" data-iconpos="left">
-                    Atras
-                </a>
-                <h3>
-                    Mi Posicion
-                </h3>
+                <a data-role="button" data-inline="true" data-rel="back" data-transition="fade" href="#page2" data-icon="back" data-iconpos="left">Atras</a>
+                <h3>Mi Posicion</h3>
             </div>
             <div data-role="content" style="padding: 15px">
-                <div id="map_canvas" style="width: 288px; height: 400px"></div>
+                <div id="map_canvas" style="width: 100%; height: 400px"></div>
             </div>
         </div>
         <div data-role="page" id="page5">
             <div data-theme="a" data-role="header">
-                <a data-role="button" data-inline="true" data-rel="back" data-transition="fade" href="#page2" data-icon="back" data-iconpos="left">
-                    Atras
-                </a>
-                <h3>
-                    Censo Urbano
-                </h3>
+                <a data-role="button" data-inline="true" data-rel="back" data-transition="fade" href="#page2" data-icon="back" data-iconpos="left">Atras</a>
+                <h3>Censo Urbano</h3>
             </div>
             <div data-role="content" style="padding: 15px">
                 <br /><br /><br /><br />

@@ -1,5 +1,6 @@
 $(function() {
 
+    $.mobile.selectmenu.prototype.options.nativeMenu = false;
     var fileref = document.createElement('script');
     fileref.setAttribute("type", "text/javascript");
     fileref.setAttribute("src",
@@ -27,12 +28,11 @@ $(function() {
                 }
         ),
                 function(result) {
-                    alert(result);
 //                    $.mobile.changePage("#page2", {transition: 'slide'});
                         if (result.login == 0) {
                             $.mobile.hidePageLoadingMsg();
                             alert(result.mensaje);
-                            alert("Usuario y/o Clave Incorrectos");                            
+//                            alert("Usuario y/o Clave Incorrectos");                            
 
                         } else {                                                        
                             $.mobile.hidePageLoadingMsg();
@@ -48,7 +48,7 @@ $(function() {
 //                            $('ul').append('<li data-theme="a"><a href="#page4" data-transition="slide" onclick="obtenerMiPosicion();">Mi Posicion</a></li>');
 //                            $('ul').listview('refresh');                            
                         }
-                }, 'html');
+                }, 'json');
     });
 });
 
