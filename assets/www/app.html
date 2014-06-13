@@ -58,7 +58,7 @@
                 <ul data-role="listview" data-divider-theme="b" data-inset="true">
                     <li data-role="list-divider" role="heading">Menu</li>
                     <li data-theme="a">
-                        <a href="#page3" data-transition="slide">Nuevo Reporte</a>
+                        <a href="#page3" onclick="llenarMunicipio();optenerTipologia()" data-transition="slide">Nuevo Reporte</a>
                     </li>
                     <li data-theme="a">
                         <a href="#page4" data-transition="slide" onclick='obtenerMiPosicion();'>Mi Posicion</a>
@@ -76,45 +76,70 @@
 
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup">
-                    <label for="municipio" class="select">Municipio</label>
-                    <select name="municipio" id="municipio">
-                        <option value="1">Soledad</option>
-                        <option value="2">Cienaga</option>
-                        <option value="3">Uribia</option>
-                        <option value="4">Maicao</option>
-                        <option value="1">Soledad</option>
-                        <option value="2">Cienaga</option>
-                        <option value="3">Uribia</option>
-                        <option value="4">Maicao</option>
-                        <option value="1">Soledad</option>
-                        <option value="2">Cienaga</option>
-                        <option value="3">Uribia</option>
-                        <option value="4">Maicao</option>
-                        <option value="1">Soledad</option>
-                        <option value="2">Cienaga</option>
-                        <option value="3">Uribia</option>
-                        <option value="4">Maicao</option>
-                        <option value="1">Soledad</option>
-                        <option value="2">Cienaga</option>
-                        <option value="3">Uribia</option>
+                    <label for="mun" class="select">Municipio</label>
+                    <select name="municipio" id="municipio" onchange="obtenerBarrios()">
                     </select>
                     </fieldset>
-                </div>                
+                </div>
+                
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                    <label for="barr" class="select">Barrio</label>
+                    <select name="barrio" id="barrio">
+                        <option value="--Seleccione--" selected="selected">--Seleccione--</option>
+                    </select>
+                    </fieldset>
+                </div>
+                
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="tipol" class="select">Tipologia</label>
+                    <select name="tipologia" id="tipologia"  onchange="obtenerMobiliarios()">                        
+                    </select>
+                    </fieldset>
+                </div>
 
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup">
-                        <label for="descripciontxt">Descripcion</label>
-                        <textarea name="descripciontxt" id="descripciontxt" style='width:100%;'></textarea>
+                    <label for="mob" class="select">Mobiliario</label>
+                    <select name="mobiliario" id="mobiliario">                        
+                    </select>
                     </fieldset>
-                </div>
+                </div>                   
+                
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup">
-                        <label for="sector">Sector</label>
-                        <input name="sector" id="sector" style='width:100%;'>
+                    <label for="ref" class="select">Referencia</label>
+                    <select name="referencia" id="referencia">
+                    </select>
+                    </fieldset>
+                </div>
+                
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                    <label for="est" class="select">Estado</label>
+                    <select name="estado" id="estado">
+                    </select>
+                    </fieldset>
+                </div>                    
+                
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <!--<label for="dir">Direccion</label>-->
+                        <input id="direccion" name="direccion" readonly="readonly"  data-inline="true">
+                        <a data-role="button" data-transition="pop" data-theme="a" onclick='getDireccion();' data-icon="plus" data-iconpos="left" data-inline="true">Direccion</a>                        
+                   </fieldset>
+                </div>
+                
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="observ">Observacion</label>
+                        <textarea name="observacion" id="observacion" style='width:100%;'></textarea>
                     </fieldset>
                 </div>                
-                <a data-role="button" data-transition="pop" data-theme="a" onclick='onPhotosLoad();' data-icon="plus" data-iconpos="left">Tomar Foto</a>
-                <a data-role="button" data-transition="pop" data-theme="a" onclick='captureVideo();' data-icon="plus" data-iconpos="left">Grabar Video</a>
+                
+                <a data-role="button" data-transition="pop" data-theme="a" onclick='onPhotosLoad();' data-icon="plus" data-iconpos="left" >Tomar Foto</a>
+               <!-- <a data-role="button" data-transition="pop" data-theme="a" onclick='captureVideo();' data-icon="plus" data-iconpos="left">Grabar Video</a>-->
                 <a data-role="button" data-transition="pop" data-theme="a" onclick='registrarAccion();' data-icon="plus" data-iconpos="left">Registrar</a>
             </div>
         </div>
@@ -137,5 +162,54 @@
                 <p style="text-align: center;"><span id='mensajeTxt' style="font-size: x-large;"><b>Enviado Datos...</b></span></p>
             </div>
         </div>
+        <div data-role="page" id="page6">
+            <div data-theme="a" data-role="header">
+                <a data-role="button" data-inline="true" data-rel="back" data-transition="fade" href="#page3" data-icon="back" data-iconpos="left">Atras</a>
+                <h3>Direccion</h3>
+            </div>
+            <div data-role="content" style="padding: 15px">
+                <p style="text-align: center;"><span id='mensajeTxt' style="font-size: x-large;"><b>Diligenciar Direccion</b></span></p>
+            
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                    <label for="tipo_via" class="select">Tipo via</label>
+                    <select name="tipo_via_1" id="tipo_via_1">
+                    </select>
+                    </fieldset>
+                </div>              
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="num1">Número</label>
+                        <input name="numero1" id="numero1" style='width:100%;'>
+                    </fieldset>
+                </div>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                    <label for="tipo_via" class="select">Intersección</label>
+                    <select name="tipo_via_2" id="tipo_via_2">
+                    </select>
+                    </fieldset>
+                </div>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="num2">Número</label>
+                        <input name="numero2" id="numero2" style='width:100%;'>
+                    </fieldset>
+                </div>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="distancia">Distancia</label>
+                        <input name="distancia" id="distancia" style='width:100%;'>
+                    </fieldset>
+                </div>                
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="descripciontxt">Complemento</label>
+                        <input name="comp" id="comp" style='width:100%;'>
+                    </fieldset>
+                </div> 
+                <a data-role="button" data-transition="pop" data-theme="a" onclick='crearDireccion();' data-icon="plus" data-iconpos="left" >Aceptar</a>
+            </div>
+        </div>        
     </body>
 </html>

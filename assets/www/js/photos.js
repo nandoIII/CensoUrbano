@@ -55,41 +55,51 @@ function savePhoto() {
 
     //setTimeout(function() {
     var params = {
-        descripcion: $("#descripciontxt").val(),
+        id_usuario: id_usuario,
+        id_municipio: $("#municipio").val(),
+        id_barrio: $("#barrio").val(),
+        id_tipologia: $("#tipologia").val(),
+        id_mobiliario: $("#mobiliario").val(),
+        id_referencia: $("#referencia").val(),
+        id_estado: $("#estado").val(),
+        id_direccion: $("#direccion").val(),
+        observacion: $("#observacion").val(),
+//        descripcion: $("#descripciontxt").val(),
         latitude: latitude,
         longitude: longitude,
         altitude: altitude,
-        obra: window.id_obra,
+//        obra: window.id_obra,
         tipo: isTypeOf
     };
 
     uploadOptions.params = params;
+    alert(url_censo+'?accion=crearRegistro');
 
     var fileTransfer = new FileTransfer();
     // Be sure to update the URL below to your site
-    fileTransfer.upload(currentPhoto,
-            "http://www.dolmen.net.co/sid_v1/censo_au/ajax/registrar.php",
+    fileTransfer.upload(currentPhoto,url_censo+
+            '?accion=crearRegistro',
             uploadSuccess,
             uploadFail,
             uploadOptions);
-
     //}, wait);
 }
 
-function uploadSuccess(result) {
-    var jsno = JSON.parse(result.response);
-    //$.mobile.hidePageLoadingMsg();
-    if (jsno.success == 1) {
-        navigator.notification.vibrate(500);
-        navigator.notification.beep(2);
-        alert("Registro de posicion exitoso, latitud: "+jsno.latitud+", longitud: "+jsno.longitud);
-        currentPhoto = null;
-        loaded = false;
-        $("#descripciontxt").val("");
-        $("#mensajeTxt").val("<b>Datos Enviados</b>");
-    } else {
-        alert('La obra ha sido finalizada')
-    }
+function uploadSuccess(result) { 
+    alert(result.response); 
+//    var jsno = JSON.parse(result.response);
+//    //$.mobile.hidePageLoadingMsg();
+//    if (jsno.success == 1) {
+//        navigator.notification.vibrate(500);
+//        navigator.notification.beep(2);
+//        alert("Registro de posicion exitoso, latitud: "+jsno.latitud+", longitud: "+jsno.longitud);
+//        currentPhoto = null;
+//        loaded = false;
+//        $("#descripciontxt").val("");
+//        $("#mensajeTxt").val("<b>Datos Enviados</b>");
+//    } else {
+//        alert('La obra ha sido finalizada');
+//    }
 }
 
 function uploadFail(error) {
