@@ -53,7 +53,9 @@ function savePhoto() {
         wait = 5000;
     }
 
-    //setTimeout(function() {
+//    alert('foto ' + currentPhoto);
+
+    //setTimeout(function() { 
     var params = {
         id_usuario: id_usuario,
         id_municipio: $("#municipio").val(),
@@ -73,11 +75,10 @@ function savePhoto() {
     };
 
     uploadOptions.params = params;
-    alert(url_censo+'?accion=crearRegistro');
 
     var fileTransfer = new FileTransfer();
     // Be sure to update the URL below to your site
-    fileTransfer.upload(currentPhoto,url_censo+
+    fileTransfer.upload(currentPhoto, url_censo +
             '?accion=crearRegistro',
             uploadSuccess,
             uploadFail,
@@ -85,21 +86,22 @@ function savePhoto() {
     //}, wait);
 }
 
-function uploadSuccess(result) { 
-    alert(result.response); 
-//    var jsno = JSON.parse(result.response);
-//    //$.mobile.hidePageLoadingMsg();
-//    if (jsno.success == 1) {
-//        navigator.notification.vibrate(500);
-//        navigator.notification.beep(2);
-//        alert("Registro de posicion exitoso, latitud: "+jsno.latitud+", longitud: "+jsno.longitud);
-//        currentPhoto = null;
-//        loaded = false;
-//        $("#descripciontxt").val("");
-//        $("#mensajeTxt").val("<b>Datos Enviados</b>");
-//    } else {
-//        alert('La obra ha sido finalizada');
-//    }
+function uploadSuccess(result) {    
+    var jsno = JSON.parse(result.response);
+    //$.mobile.hidePageLoadingMsg(); 
+    alert(jsno.id_municipio);
+    if (jsno.success == 1) {
+        navigator.notification.vibrate(500);
+        navigator.notification.beep(2);
+//        alert("Registro de posicion exitoso  , latitud: " + jsno.latitud + ", longitud: " + jsno.longitud + " Imagen: " + jsno.imagen);
+        alert("consulta: "+jsno.consulta);
+        currentPhoto = null;
+        loaded = false;
+        $("#descripciontxt").val("");
+        $("#mensajeTxt").val("<b>Datos Enviados</b>");
+    } else {
+        alert('La obra ha sido finalizada');
+    }
 }
 
 function uploadFail(error) {
